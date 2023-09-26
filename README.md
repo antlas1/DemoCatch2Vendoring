@@ -4,7 +4,7 @@
 
 Сборка и проверка под Windows:
 
-1. Получаем и конфигурируем
+1. Открываем консоль windows, переходим на путь, например `C:\projects`. Получаем проект из гита и конфигурируем
 
 ```
 git clone https://github.com/antlas1/DemoCatch2Vendoring.git
@@ -12,44 +12,21 @@ cd DemoCatch2Vendoring
 gen_cmake_msvc2022.bat
 ```
 
-Результат конфигурации:
+Можно открыть файл `gen_cmake_msvc2022.bat`в блокноте и выполнить отдельно шаги в консоли:
 
-```
-**********************************************************************
-** Visual Studio 2022 Developer Command Prompt v17.6.2
-** Copyright (c) 2022 Microsoft Corporation
-**********************************************************************
-[vcvarsall.bat] Environment initialized for: 'x64'
--- Selecting Windows SDK version 10.0.22000.0 to target Windows 10.0.22621.
--- The C compiler identification is MSVC 19.36.32532.0
--- The CXX compiler identification is MSVC 19.36.32532.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.36.32532/bin/Hostx64/x64/cl.exe - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.36.32532/bin/Hostx64/x64/cl.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Configuring done (3.3s)
--- Generating done (0.0s)
--- Build files have been written to: DemoCatch2Vendoring/build
-Для продолжения нажмите любую клавишу . . .
-```
+![](img/vendor.gif)
 
-2. Собираем в VisualStudio. Выбираем начальный проект `DemoCatch2Vendoring` и запускаем после сборки:
+2. После конфигурации открываем в студии и собираем:
 
-```
-Randomness seeded to: 474926427
-===============================================================================
-All tests passed (4 assertions in 1 test case)
+![](img/OpenAndBuildSolution.png)
+
+3. Запускаем тесты:
+
+![](img/RunTestOk.png)
 
 
-C:\Users\antlas\source\cpp-neto\DemoCatch2Vendoring\build\Debug\demoVendorCatch2.exe (процесс 22324) завершил работу с кодом 0.
-Нажмите любую клавишу, чтобы закрыть это окно:
-```
+
+# Справочная информация
 
 ### Создание репозитория с catch2
 
@@ -61,7 +38,8 @@ cd DemoCatch2Vendoring
 git clone https://github.com/catchorg/Catch2 catch2
 ```
 
-Пример результата:
+Плюс, удалил каталог `.git` из catch2. Пример результата:
+
 ```
 >git clone git@github.com:antlas1/DemoCatch2Vendoring.git
 Cloning into 'DemoCatch2Vendoring'...
@@ -132,14 +110,14 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Catch2::Catch2 Catch2::Catch2WithM
 
 uint32_t factorial( uint32_t number ) 
 {     
-	return number <= 1 ? number : factorial(number-1) * number; 
+    return number <= 1 ? number : factorial(number-1) * number; 
 }  
 
 TEST_CASE( "Factorials are computed", "[factorial]" ) {     
-	REQUIRE( factorial( 1) == 1 );     
-	REQUIRE( factorial( 2) == 2 );     
-	REQUIRE( factorial( 3) == 6 );     
-	REQUIRE( factorial(10) == 3'628'800 ); 
+    REQUIRE( factorial( 1) == 1 );     
+    REQUIRE( factorial( 2) == 2 );     
+    REQUIRE( factorial( 3) == 6 );     
+    REQUIRE( factorial(10) == 3'628'800 ); 
 }
 ```
 
